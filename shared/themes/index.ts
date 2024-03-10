@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
+
 import { THEME_COOKIE_NAME } from './constants';
 import { Theme } from './types';
 
@@ -8,6 +9,7 @@ export const useTheme = () => {
   const hasCookie = !!cookie['prefers-color-scheme'];
 
   const preferedDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches && 'dark';
+  // eslint-disable-next-line no-nested-ternary
   const currentThemeMode: Theme = hasCookie ? cookie['prefers-color-scheme'] : (preferedDarkTheme ? 'dark' : 'light');
   const [theme, setTheme] = useState<Theme>(cookie['prefers-color-scheme'] ?? currentThemeMode);
 
