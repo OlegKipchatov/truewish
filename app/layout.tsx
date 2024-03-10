@@ -1,9 +1,9 @@
-import { GeistSans } from "geist/font/sans";
-import Providers from '@/shared/providers';
-import "./globals.css";
-import Header from "@/components/Header";
 import { cookies } from "next/headers";
+import { GeistSans } from "geist/font/sans";
+import Header from "@/components/Header";
 import { getTheme } from "@/shared/themes/server";
+import "./globals.css";
+import Providers from './providers';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
