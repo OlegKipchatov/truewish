@@ -1,5 +1,6 @@
-import { SupabaseClient } from "@supabase/supabase-js";
-import { IUser } from "../types";
+import { IUser } from '../types';
+
+import { SupabaseClient } from '@supabase/supabase-js';
 
 export const isAuthenticated = async (client: SupabaseClient) => {
   const { data: { user } } = await client.auth.getUser();
@@ -18,4 +19,4 @@ export const getSessionUser = async (client: SupabaseClient) => {
     ...session.user.user_metadata,
   } as IUser;
   return user;
-}
+};

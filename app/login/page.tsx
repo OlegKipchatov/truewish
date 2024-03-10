@@ -1,8 +1,11 @@
-import Link from "next/link";
-import { headers } from "next/headers";
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
-import { SubmitButton } from "./submit-button";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { headers } from 'next/headers';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
+import { createClient } from '@/shared/supabase/server';
+
+import { SubmitButton } from './submit-button';
 
 export default function Login({
   searchParams,
@@ -10,10 +13,10 @@ export default function Login({
   searchParams: { message: string };
 }) {
   const signIn = async (formData: FormData) => {
-    "use server";
+    'use server';
 
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
     const supabase = createClient();
 
     const { error } = await supabase.auth.signInWithPassword({
@@ -22,18 +25,18 @@ export default function Login({
     });
 
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return redirect('/login?message=Could not authenticate user');
     }
 
-    return redirect("/protected");
+    return redirect('/protected');
   };
 
   const signUp = async (formData: FormData) => {
-    "use server";
+    'use server';
 
-    const origin = headers().get("origin");
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
+    const origin = headers().get('origin');
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
     const supabase = createClient();
 
     const { error } = await supabase.auth.signUp({
@@ -45,16 +48,17 @@ export default function Login({
     });
 
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return redirect('/login?message=Could not authenticate user');
     }
 
-    return redirect("/login?message=Check email to continue sign in process");
+    return redirect('/login?message=Check email to continue sign in process');
   };
 
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
         href="/"
+        // eslint-disable-next-line max-len
         className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
       >
         <svg
@@ -70,12 +74,16 @@ export default function Login({
           className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
         >
           <polyline points="15 18 9 12 15 6" />
-        </svg>{" "}
+        </svg>
+        {' '}
         Back
       </Link>
 
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
-        <label className="text-md" htmlFor="email">
+        <label
+          className="text-md"
+          htmlFor="email"
+        >
           Email
         </label>
         <input
@@ -84,7 +92,10 @@ export default function Login({
           placeholder="you@example.com"
           required
         />
-        <label className="text-md" htmlFor="password">
+        <label
+          className="text-md"
+          htmlFor="password"
+        >
           Password
         </label>
         <input

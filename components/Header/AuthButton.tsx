@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { Avatar, AvatarIcon } from '@nextui-org/avatar';
-import { Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger, } from '@nextui-org/dropdown';
-
+import {
+  Avatar, AvatarIcon,
+  Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger,
+} from '@nextui-org/react';
 import ArrowLeftStartOnRectangleIcon from '@heroicons/react/24/outline/ArrowLeftStartOnRectangleIcon';
 import ListBulletIcon from '@heroicons/react/24/outline/ListBulletIcon';
-import { createClient } from '@/utils/supabase/client';
+
+import { createClient } from '@/shared/supabase/client';
 
 type Props = {
   linkProfile: string
